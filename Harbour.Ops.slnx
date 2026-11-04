@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/api/">
+    <Project Path="api/Harbour.Ops.Api.Tests/Harbour.Ops.Api.Tests.csproj" />
+    <Project Path="api/Harbour.Ops.Api/Harbour.Ops.Api.csproj" />
+  </Folder>
+</Solution>

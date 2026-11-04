@@ -1,0 +1,25 @@
+{
+  "_comment": "Read by both the xUnit and the Vitest suites, so the server and the demo-mode front end cannot disagree about what late means.",
+  "nowUtc": "2026-11-04T04:00:00Z",
+  "todayStartUtc": "2026-11-03T13:00:00Z",
+  "todayEndUtc": "2026-11-04T13:00:00Z",
+  "jobs": [
+    { "number": "T1 delivered before due", "status": "Delivered", "readyAt": "2026-11-03T22:00:00Z", "dueAt": "2026-11-04T00:00:00Z", "deliveredAt": "2026-11-03T23:30:00Z" },
+    { "number": "T2 delivered exactly on due", "status": "Delivered", "readyAt": "2026-11-03T22:00:00Z", "dueAt": "2026-11-04T00:00:00Z", "deliveredAt": "2026-11-04T00:00:00Z" },
+    { "number": "T3 delivered one minute after due", "status": "Delivered", "readyAt": "2026-11-03T23:00:00Z", "dueAt": "2026-11-04T01:00:00Z", "deliveredAt": "2026-11-04T01:01:00Z" },
+    { "number": "T4 in transit, past due", "status": "InTransit", "readyAt": "2026-11-04T00:00:00Z", "dueAt": "2026-11-04T03:00:00Z", "deliveredAt": null },
+    { "number": "T5 in transit, not yet due", "status": "InTransit", "readyAt": "2026-11-04T02:00:00Z", "dueAt": "2026-11-04T05:00:00Z", "deliveredAt": null },
+    { "number": "T6 unassigned, past due", "status": "Unassigned", "readyAt": "2026-11-04T00:00:00Z", "dueAt": "2026-11-04T02:00:00Z", "deliveredAt": null },
+    { "number": "T7 unassigned, not yet due", "status": "Unassigned", "readyAt": "2026-11-04T03:00:00Z", "dueAt": "2026-11-04T06:00:00Z", "deliveredAt": null },
+    { "number": "T8 failed, past due", "status": "Failed", "readyAt": "2026-11-04T00:00:00Z", "dueAt": "2026-11-04T01:00:00Z", "deliveredAt": null },
+    { "number": "T9 yesterday, must not count", "status": "Unassigned", "readyAt": "2026-11-03T12:59:00Z", "dueAt": "2026-11-03T15:00:00Z", "deliveredAt": null }
+  ],
+  "expected": {
+    "jobsToday": 8,
+    "delivered": 3,
+    "onTimePercent": 66.7,
+    "late": 3,
+    "unassigned": 2,
+    "failed": 1
+  }
+}
