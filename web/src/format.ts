@@ -15,16 +15,6 @@ export const STATUS_LABEL: Record<JobStatus, string> = {
   Failed: "Failed",
 };
 
-// A shape as well as a colour, so status never depends on colour alone.
-export const STATUS_GLYPH: Record<JobStatus, string> = {
-  Unassigned: "○",
-  Assigned: "◔",
-  PickedUp: "◑",
-  InTransit: "◕",
-  Delivered: "●",
-  Failed: "✕",
-};
-
 export const SERVICE_LABEL: Record<ServiceLevel, string> = {
   Standard: "Standard",
   Express: "Express",

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SERVICE_LABEL, STATUS_GLYPH, STATUS_LABEL, formatTime } from "../format";
+import { SERVICE_LABEL, STATUS_LABEL, formatTime } from "../format";
 import { SERVICES, STATUSES, type Driver, type JobQuery, type JobStatus, type PagedJobs, type ServiceLevel, type SortColumn } from "../types";
 
 const COLUMNS: { key: SortColumn; label: string }[] = [
@@ -102,7 +102,7 @@ export function JobsTable({ page, query, drivers, changed, onQuery, onOpen }: Pr
                 <td>{SERVICE_LABEL[job.service]}</td>
                 <td className={job.driver ? undefined : "muted"}>{job.driver ?? "Nobody yet"}</td>
                 <td className="mono">{formatTime(job.dueAt)}{job.isLate && <span className="late-tag">LATE</span>}</td>
-                <td><span className={`status status-${job.status}`}><span aria-hidden="true">{STATUS_GLYPH[job.status]}</span> {STATUS_LABEL[job.status]}</span></td>
+                <td><span className={`status status-${job.status}`}>{STATUS_LABEL[job.status]}</span></td>
               </tr>
             ))}
           </tbody>

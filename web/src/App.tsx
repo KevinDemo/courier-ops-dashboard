@@ -4,7 +4,8 @@ import { JobDrawer } from "./components/JobDrawer";
 import { JobsTable } from "./components/JobsTable";
 import { KpiTiles } from "./components/KpiTiles";
 import { Login } from "./components/Login";
-import { STATUS_GLYPH, STATUS_LABEL, formatTime } from "./format";
+import { SiteHeader } from "./components/SiteHeader";
+import { STATUS_LABEL, formatTime } from "./format";
 import { AuthError, type Connection, type DataSource, type Driver, type HourBucket, type JobChanged, type JobDetail, type JobQuery, type Kpis, type PagedJobs } from "./types";
 
 const FIRST_QUERY: JobQuery = { sort: "dueAt", dir: "asc", page: 1, pageSize: 15 };
@@ -93,7 +94,14 @@ function Dashboard({ source, user, onSignOut }: { source: DataSource; user: stri
 
   return (
     <div className="app">
-      <header className="topbar">
+      <SiteHeader />
+      {source.isDemo && (
+        <div className="banner-band">
+          <p className="wrap demo-banner" role="note">Static demo running in your browser. The real .NET service is in the repo. Demo mode: fictional data generated here, with a simulator moving jobs along.</p>
+        </div>
+      )}
+      <div className="wrap sheet">
+      <div className="ops-bar">
         <div className="brand">
           <span className="wordmark">Harbour Ops</span>
           <span className="today">{dateLabel.format(new Date())}</span>
@@ -103,12 +111,7 @@ function Dashboard({ source, user, onSignOut }: { source: DataSource; user: stri
           {!source.isDemo && <span className="user">{user}</span>}
           {!source.isDemo && <button type="button" className="link" onClick={onSignOut}>Sign out</button>}
         </div>
-      </header>
-      <div className="hazard" aria-hidden="true" />
-
-      {source.isDemo && (
-        <p className="demo-banner">Demo mode: fictional data generated in your browser, with a simulator moving jobs along. No server is involved.</p>
-      )}
+      </div>
       {error && <p className="error-banner" role="alert">{error}</p>}
 
       <KpiTiles
@@ -134,7 +137,7 @@ function Dashboard({ source, user, onSignOut }: { source: DataSource; user: stri
                   <button type="button" onClick={() => setOpenId(item.id)}>
                     <span className="mono">{formatTime(item.at)}</span>
                     <span className="feed-text"><b>{item.number}</b> {item.customer}</span>
-                    <span className={`status status-${item.status}`}><span aria-hidden="true">{STATUS_GLYPH[item.status]}</span> {STATUS_LABEL[item.status]}</span>
+                    <span className={`status status-${item.status}`}>{STATUS_LABEL[item.status]}</span>
                   </button>
                 </li>
               ))}
@@ -142,8 +145,9 @@ function Dashboard({ source, user, onSignOut }: { source: DataSource; user: stri
           </section>
         </div>
       </main>
+      </div>
 
-      {detail && <JobDrawer detail={detail} onClose={closeDrawer} />}
+      {detail &&<JobDrawer detail={detail} onClose={closeDrawer} />}
     </div>
   );
 }

@@ -55,7 +55,7 @@ The tests also found a real bug during the build: jobs booked for later today ha
 
 The running stack was also exercised over HTTP: anonymous requests got 401, login worked, the hub negotiated, and the unassigned count went from 37 to 36 between two reads as the simulator ran. The demo build was served under `/courier-ops-dashboard/` and returned its page, with its assets at that base path.
 
-The chart colours pass a colour-blindness and contrast check against the dark surface. Each series also has a legend entry, and the table view gives the numbers without any colour.
+The chart uses greys with one accent for jobs delivered on time, taken from theme tokens so each theme has its own values. Each series also has a legend entry with its total, and the table view gives the numbers without any colour.
 
 ## How to run
 
@@ -83,7 +83,11 @@ npm run build:demo      # writes web/dist-demo, base path /courier-ops-dashboard
 npm run preview:demo    # serves it at http://localhost:4173/courier-ops-dashboard/
 ```
 
-`dist-demo` is meant for `https://kevindemo.github.io/courier-ops-dashboard/`. It has not been deployed.
+Live demo: [https://kevindemo.github.io/courier-ops-dashboard/](https://kevindemo.github.io/courier-ops-dashboard/). The look changed after the last deployment, so `dist-demo` needs publishing again to show it.
+
+### Hosting the real service
+
+The static demo needs no server. To host the real .NET service as well, the repo has a multi-stage `Dockerfile` (.NET 10, listens on `$PORT`) and a `render.yaml` blueprint for Render's free web service plan. SQLite is created on start and seeded with today's jobs by the API's own generator, and the image builds the front end into the API's `wwwroot`. The image itself has not been built, because Docker was not available on the machine where this was written. `dotnet publish` was run instead and the published build answered over HTTP with the same settings.
 
 ## What a client gets
 

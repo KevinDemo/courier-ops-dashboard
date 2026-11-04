@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { SERVICE_LABEL, STATUS_GLYPH, STATUS_LABEL, formatTime } from "../format";
+import { SERVICE_LABEL, STATUS_LABEL, formatTime } from "../format";
 import type { JobDetail } from "../types";
 
 export function JobDrawer({ detail, onClose }: { detail: JobDetail; onClose: () => void }) {
@@ -31,7 +31,7 @@ export function JobDrawer({ detail, onClose }: { detail: JobDetail; onClose: () 
         </header>
 
         <p className="drawer-status">
-          <span className={`status status-${job.status}`}><span aria-hidden="true">{STATUS_GLYPH[job.status]}</span> {STATUS_LABEL[job.status]}</span>
+          <span className={`status status-${job.status}`}>{STATUS_LABEL[job.status]}</span>
           {job.isLate && <span className="late-tag">LATE</span>}
         </p>
 

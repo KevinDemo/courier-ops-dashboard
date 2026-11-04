@@ -2,12 +2,12 @@ import { useState } from "react";
 import { formatHour } from "../format";
 import type { HourBucket } from "../types";
 
-// Colours validated against the #13232a surface with the dataviz palette checker. Order is fixed, never by rank.
+// Greys with the one accent for delivered on time. Theme tokens, so each theme keeps its own contrast. Order is fixed, never by rank.
 const SERIES = [
-  { key: "onTime", label: "On time", color: "#2aa691" },
-  { key: "late", label: "Late", color: "#e4630c" },
-  { key: "open", label: "In progress", color: "#748edf" },
-  { key: "failed", label: "Failed", color: "#d45fa0" },
+  { key: "onTime", label: "On time", color: "var(--accent)" },
+  { key: "late", label: "Late", color: "var(--ink)" },
+  { key: "open", label: "In progress", color: "var(--line-strong)" },
+  { key: "failed", label: "Failed", color: "var(--meter)" },
 ] as const;
 
 const WIDTH = 380;
@@ -23,12 +23,6 @@ const total = (b: HourBucket) => b.onTime + b.late + b.open + b.failed;
 function niceMax(value: number): number {
   for (const step of [5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200]) if (value <= step) return step;
   return Math.ceil(value / 100) * 100;
-}
-
-// Only the top of a stack gets the rounded corners. It stays square on the baseline.
-function roundedTop(x: number, y: number, w: number, h: number, r: number): string {
-  const radius = Math.min(r, h, w / 2);
-  return `M${x},${y + h}V${y + radius}Q${x},${y} ${x + radius},${y}H${x + w - radius}Q${x + w},${y} ${x + w},${y + radius}V${y + h}Z`;
 }
 
 export function HourlyChart({ hours }: { hours: HourBucket[] }) {
@@ -78,9 +72,7 @@ export function HourlyChart({ hours }: { hours: HourBucket[] }) {
                   const top = y(cursor);
                   // A 2px surface gap separates stacked segments.
                   const height = Math.max(y(start) - top - (index === 0 ? 0 : GAP), 1);
-                  return index === present.length - 1
-                    ? <path key={s.key} data-series={s.key} d={roundedTop(x, top, barW, height, 4)} fill={s.color} />
-                    : <rect key={s.key} data-series={s.key} x={x} y={top} width={barW} height={height} fill={s.color} />;
+                  return <rect key={s.key} data-series={s.key} x={x} y={top} width={barW} height={height} style={{ fill: s.color }} />;
                 })}
                 {i % 2 === 0 && <text x={x + barW / 2} y={HEIGHT - 6} textAnchor="middle" className="tick">{String(bucket.hour).padStart(2, "0")}</text>}
                 {i === peakIndex && <text x={x + barW / 2} y={y(peak) - 4} textAnchor="middle" className="peak">{peak}</text>}
