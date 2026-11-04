@@ -2,6 +2,10 @@
 
 One screen for today's jobs: KPI tiles, a searchable jobs table, job details, a chart and live updates when a job changes. It belongs to Harbour Freight Couriers, a fictional courier company, and all data is generated.
 
+![The static demo build: KPIs, the jobs table and jobs by ready hour, on fictional data.](docs/dashboard.png)
+
+*The static demo build: KPIs, the jobs table and jobs by ready hour, on fictional data. Screenshot taken in a headless browser on 4 November 2026.*
+
 Built with React 19, TypeScript and Vite, on an ASP.NET Core (.NET 10) API with SQLite and SignalR.
 
 ## The problem
@@ -94,7 +98,7 @@ Details and contact: [kevindemo.github.io](https://kevindemo.github.io).
 
 ## Honest limitations
 
-- **The UI has not been seen in a browser.** Browser automation was not available when this was built, so the visual design, layout and hover states are unchecked, and there are no screenshots in `docs/` yet. The component tests run in a simulated DOM (jsdom), which does not do layout. Playwright end-to-end tests were skipped for the same reason.
+- The UI was checked with screenshots in a headless browser (see `docs/`), not with automated end-to-end browser tests.
 - The live push reaching a real browser is not tested. A .NET SignalR client over long polling is, and the React side is tested against the demo source.
 - It is view-only. A manager can see an unassigned job here but must assign it elsewhere.
 - Generated data and a simulator. 160 jobs a day is small, so there is no performance claim here. KPIs load all of today's jobs into memory, which would need changing at much higher volumes.
