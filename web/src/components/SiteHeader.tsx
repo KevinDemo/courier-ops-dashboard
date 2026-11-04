@@ -56,7 +56,7 @@ export function SiteHeader() {
   return (
     <header className="topbar">
       <div className="wrap topbar-row">
-        <a className="mark" href="https://kevindemo.github.io/" target="_blank" rel="noopener">
+        <a className="mark" href="https://oct28th.com/" target="_blank" rel="noopener">
           <span className="mark-box" aria-hidden="true">KC</span>Kevin Chen
         </a>
         <span className="product">Courier operations dashboard</span>

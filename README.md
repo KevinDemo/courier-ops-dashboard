@@ -98,7 +98,7 @@ A dashboard on your own data, with the scope agreed in writing first:
 3. Login through your existing identity provider, with roles.
 4. Tests on the numbers, so a later change cannot quietly alter what the business is measuring.
 
-Details and contact: [kevindemo.github.io](https://kevindemo.github.io).
+Details and contact: [kevindemo.github.io](https://oct28th.com).
 
 ## Honest limitations
 
