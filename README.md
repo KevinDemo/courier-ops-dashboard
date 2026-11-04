@@ -38,7 +38,7 @@ The late rule exists on both sides, because demo mode has no server. `tests-shar
 
 ## Test results
 
-Latest run, Windows 11, .NET SDK 10.0.108, Node 22: **72 tests, 72 passed, 0 failed, 0 skipped.** `tsc` and both production builds are clean, and `npm audit` found 0 vulnerabilities.
+Latest run, from a fresh clone on Windows 11, .NET SDK 10.0.108, Node 22: **72 tests, 72 passed, 0 failed, 0 skipped**, with `dotnet build` at 0 warnings and 0 errors. `tsc` and both production builds are clean, and `npm audit` found 0 vulnerabilities.
 
 | Suite | Tests | What is covered |
 |---|--:|---|
