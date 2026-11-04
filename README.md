@@ -83,7 +83,7 @@ npm run build:demo      # writes web/dist-demo, base path /courier-ops-dashboard
 npm run preview:demo    # serves it at http://localhost:4173/courier-ops-dashboard/
 ```
 
-Live demo: [https://kevindemo.github.io/courier-ops-dashboard/](https://kevindemo.github.io/courier-ops-dashboard/). The look changed after the last deployment, so `dist-demo` needs publishing again to show it.
+Live demo: [https://demo.oct28th.com/courier-ops-dashboard/](https://demo.oct28th.com/courier-ops-dashboard/). The look changed after the last deployment, so `dist-demo` needs publishing again to show it.
 
 ### Hosting the real service
 
